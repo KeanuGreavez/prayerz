@@ -1,33 +1,36 @@
-// Ask user to click a button first to allow location (required on some phones)
-function requestPrayerTimes() {
-    if (!navigator.geolocation) {
-        alert("Geolocation is not supported by your browser");
-        return;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Times Worldwide</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-            fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
-            .then(response => response.json())
-            .then(data => {
-                let t = data.data.timings;
+<body>
 
-                document.getElementById("fajr").innerText = t.Fajr;
-                document.getElementById("dhuhr").innerText = t.Dhuhr;
-                document.getElementById("asr").innerText = t.Asr;
-                document.getElementById("maghrib").innerText = t.Maghrib;
-                document.getElementById("isha").innerText = t.Isha;
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Failed to fetch prayer times");
-            });
-        },
-        (err) => {
-            alert("Please allow location access to see prayer times");
-        }
-    );
-}
+<nav class="navbar">
+  <h1>Prayer Times</h1>
+</nav>
+
+<div class="container">
+
+<h2>Your Local Prayer Times</h2>
+
+<!-- Button required for mobile geolocation prompt -->
+<button id="loadTimes" class="btn">Load My Prayer Times</button>
+
+<div class="prayer-list">
+  <p>Fajr: <span id="fajr">--:--</span></p>
+  <p>Zuhr: <span id="dhuhr">--:--</span></p>
+  <p>Asr: <span id="asr">--:--</span></p>
+  <p>Maghrib: <span id="maghrib">--:--</span></p>
+  <p>Isha: <span id="isha">--:--</span></p>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
