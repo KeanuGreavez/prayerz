@@ -1,19 +1,26 @@
-let prayerTimes = {};
+function getPrayerTimes(lat, lon){
 
-async function loadTimes() {
+fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
+.then(response => response.json())
+.then(data => {
 
-let response = await fetch("https://api.aladhan.com/v1/timingsByCity?city=London&country=UK");
-let data = await response.json();
+let times = data.data.timings;
 
-prayerTimes = data.data.timings;
+document.getElementById("fajr").innerText = times.Fajr;
+document.getElementById("dhuhr").innerText = times.Dhuhr;
+document.getElementById("asr").innerText = times.Asr;
+document.getElementById("maghrib").innerText = times.Maghrib;
+document.getElementById("isha").innerText = times.Isha;
+
+});
 
 }
 
-function showTime(prayer){
+navigator.geolocation.getCurrentPosition(position => {
 
-document.getElementById("result").innerText =
-prayer + " time: " + prayerTimes[prayer];
+let lat = position.coords.latitude;
+let lon = position.coords.longitude;
 
-}
+getPrayerTimes(lat, lon);
 
-loadTimes();
+});
