@@ -1,26 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
-<title>Prayer Times</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Times Worldwide</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
+<nav class="navbar">
+  <h1>Prayer Times</h1>
+</nav>
+
+<div class="container">
+
 <h2>Your Local Prayer Times</h2>
 
-<button onclick="requestPrayerTimes()" class="btn">Load My Prayer Times</button>
+<!-- Button required for mobile geolocation prompt -->
+<button id="loadTimes" class="btn">Load My Prayer Times</button>
 
-<p>Fajr: <span id="fajr">Loading...</span></p>
-<p>Zuhr: <span id="dhuhr">Loading...</span></p>
-<p>Asr: <span id="asr">Loading...</span></p>
-<p>Maghrib: <span id="maghrib">Loading...</span></p>
-<p>Isha: <span id="isha">Loading...</span></p>
+<div class="prayer-list">
+  <p>Fajr: <span id="fajr">--:--</span></p>
+  <p>Zuhr: <span id="dhuhr">--:--</span></p>
+  <p>Asr: <span id="asr">--:--</span></p>
+  <p>Maghrib: <span id="maghrib">--:--</span></p>
+  <p>Isha: <span id="isha">--:--</span></p>
+</div>
+
+</div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
