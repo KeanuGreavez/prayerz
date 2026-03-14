@@ -46,8 +46,8 @@ nav {
 }
 
 .nav-links li a:hover{
-  color: #38bdf8;
-  text-shadow: 0 0 10px #38bdf8;
+  color: #b1b1b1;
+  text-shadow: 0 0 6px #000000;
 }
 
 .btns {
